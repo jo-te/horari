@@ -1,6 +1,7 @@
 import { ResourceId } from "../../entities/Resource";
 import Event, { EventId } from "../../entities/Event";
 import { ScheduleId } from "../../entities/Schedule";
+import ResultOptions from "../../utils/ResultOptions";
 
 export interface CreateEventDTO {
   /**
@@ -37,6 +38,10 @@ export interface EventFilter {
   isDisabled?: boolean;
 }
 
+export interface EventsResultOptions extends ResultOptions {
+  orderBy?: "startDate" | "endDate" | "name";
+}
+
 export interface EventsManager {
   /**
    * Creates a new event with given properties and returns it.
@@ -46,12 +51,7 @@ export interface EventsManager {
   createMany(data: CreateEventDTO[]): Promise<Event[]>;
   findAll(
     filter?: EventFilter,
-    options?: {
-      limit?: number;
-      order?: "asc" | "desc";
-      orderBy?: "startDate" | "endDate" | "name";
-      skip?: number;
-    }
+    options?: EventsResultOptions
   ): Promise<Event[]>;
   findById(eventId: EventId): Promise<Event | null>;
   countAll(filter?: EventFilter): Promise<number>;

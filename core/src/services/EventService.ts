@@ -1,3 +1,4 @@
+import { EventsResultOptions } from "../data/managers/EventsManager";
 import Event, { EventId } from "../entities/Event";
 import { ResourceId } from "../entities/Resource";
 import { ScheduleId } from "../entities/Schedule";
@@ -22,12 +23,7 @@ interface UpdateEvent {
   scheduleIds?: ScheduleId[];
 }
 
-interface GetAllOptions {
-  limit?: number;
-  skip?: number;
-  order?: "asc" | "desc";
-  orderBy?: "startDate" | "endDate" | "name";
-}
+type GetAllOptions = EventsResultOptions;
 
 export default class EventService extends Service {
   async createFromBlueprint({
