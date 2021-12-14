@@ -1,0 +1,33 @@
+{
+  "name": "@horari/mongo-driver",
+  "version": "0.0.1",
+  "description": "A DataManager for @horari/core to use MongoDB as storage system.",
+  "main": "dist/cjs/index.js",
+  "scripts": {
+    "test": "jest --runInBand ./test"
+  },
+  "author": "Jo Te",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jo-te/horari.git"
+  },
+  "dependencies": {
+    "mongoose": "^6.0.14"
+  },
+  "devDependencies": {
+    "@types/faker": "^5.5.9",
+    "@types/jest": "^27.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "faker": "^5.5.3",
+    "jest": "^27.4.5",
+    "mongodb-memory-server": "^8.0.4",
+    "prettier": "^2.5.1",
+    "ts-jest": "^27.1.1",
+    "typescript": "^4.5.4"
+  }
+}

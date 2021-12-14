@@ -1,0 +1,27 @@
+{
+  "name": "@horari/core",
+  "description": "A dependency poor Node.js library for creating events on generic 'resources' which can be organized in schedules.",
+  "version": "0.0.1",
+  "main": "dist/cjs/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jo Te",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jo-te/horari.git"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.4.5",
+    "prettier": "^2.5.1",
+    "ts-jest": "^27.1.1",
+    "typescript": "^4.5.4"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@horari/mono-repo",
+  "private": true,
+  "description": "A dependency poor Node.js library for creating events on generic 'resources' which can be organized in schedules.",
+  "version": "0.0.0",
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "build": "tsc --build",
+    "watch": "tsc --build --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jo Te",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jo-te/horari.git"
+  },
+  "workspaces": [
+    "core",
+    "storage-drivers/*"
+  ]
+}

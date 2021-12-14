@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "lib": [
+      "esnext"
+    ],
+    "incremental": true /* Enable incremental compilation */,
+    "declaration": true /* Generates corresponding '.d.ts' file. */,
+    "declarationMap": true /* Enables importers to jump to source */,
+    "sourceMap": true /* Generates corresponding '.map' file. */,
+    "importHelpers": true /* Import emit helpers from 'tslib'. */,
+    "strict": true /* Enable all strict type-checking options. */,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "composite": true,
+  },
+  "exclude": [
+    "**/node_modules",
+    "**/dist",
+  ]
+}
