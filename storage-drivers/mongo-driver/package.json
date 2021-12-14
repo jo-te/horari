@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "description": "A DataManager for @horari/core to use MongoDB as storage system.",
   "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.ts",
   "scripts": {
+    "clean": "tsc --build --clean",
+    "build": "tsc --build",
+    "watch": "tsc --build --watch",
     "test": "jest --runInBand ./test"
   },
   "author": "Jo Te",
