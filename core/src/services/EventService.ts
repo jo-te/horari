@@ -31,7 +31,7 @@ export default class EventService extends Service {
     name,
     startDate,
     endDate,
-    isDisabled = true,
+    isDisabled = false,
     resourceIds,
     scheduleIds,
   }: CreateEvent): Promise<Event> {
@@ -56,7 +56,7 @@ export default class EventService extends Service {
       endDate,
       isDisabled,
       resourceIds,
-      scheduleIds: scheduleIds || [],
+      scheduleIds,
     });
   }
 
