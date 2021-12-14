@@ -1,4 +1,4 @@
-import { EventsResultOptions } from "../data/managers/EventsManager";
+import { EventsResultOptions } from "../data";
 import Event, { EventId } from "../entities/Event";
 import { ResourceId } from "../entities/Resource";
 import { ScheduleId } from "../entities/Schedule";
