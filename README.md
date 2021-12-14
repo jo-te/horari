@@ -8,7 +8,7 @@ The only official `DataManager` currently available is [`@horari/mongo-driver`](
 `horari` is currently in early development with potential API changes at any time and is currently very bad documented.
 
 ## Usage
-To be done.
+Is not usable at the moment.
 
 ## Roadmap
 To be done.
