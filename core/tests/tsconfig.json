@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".."
+  },
+  "references": [
+    {
+      "path": "../../storage-drivers/mongo-driver"
+    }
+  ],
+  "include": [
+    ".",
+    "../src"
+  ]
+}
