@@ -4,17 +4,20 @@ import { ResourceId } from "../entities/Resource";
 import { ScheduleId } from "../entities/Schedule";
 import Service from "./Service";
 
-interface CreateEvent {
+export interface CreateEventData {
   id?: EventId;
   name: string;
   startDate: Date;
   endDate: Date;
   isDisabled?: boolean;
+}
+
+export interface EventBlueprint extends CreateEventData {
   resourceIds: ResourceId[];
   scheduleIds?: ScheduleId[];
 }
 
-interface UpdateEvent {
+export interface UpdateEventData {
   name?: string;
   startDate?: Date;
   endDate?: Date;
@@ -23,7 +26,7 @@ interface UpdateEvent {
   scheduleIds?: ScheduleId[];
 }
 
-type GetAllOptions = EventsResultOptions;
+export type GetAllOptions = EventsResultOptions;
 
 export default class EventService extends Service {
   async createFromBlueprint({
@@ -34,7 +37,7 @@ export default class EventService extends Service {
     isDisabled = false,
     resourceIds,
     scheduleIds,
-  }: CreateEvent): Promise<Event> {
+  }: EventBlueprint): Promise<Event> {
     if (!isDisabled) {
       if (
         await this.areEventsExistingForManyBetween(
@@ -62,7 +65,7 @@ export default class EventService extends Service {
 
   async createFor(
     resourceId: ResourceId,
-    eventData: CreateEvent,
+    eventData: CreateEventData,
     scheduleIds?: ScheduleId[]
   ) {
     return this.createForMany([resourceId], eventData, scheduleIds);
@@ -70,7 +73,7 @@ export default class EventService extends Service {
 
   async createForMany(
     resourceIds: ResourceId[],
-    eventData: CreateEvent,
+    eventData: CreateEventData,
     scheduleIds?: ScheduleId[]
   ) {
     return this.createFromBlueprint({ ...eventData, resourceIds, scheduleIds });
@@ -120,11 +123,11 @@ export default class EventService extends Service {
     );
   }
 
-  async updateById(eventId: EventId, eventData: UpdateEvent) {
+  async updateById(eventId: EventId, eventData: UpdateEventData) {
     return this.updateManyById([eventId], eventData);
   }
 
-  async updateManyById(eventIds: EventId[], eventData: UpdateEvent) {
+  async updateManyById(eventIds: EventId[], eventData: UpdateEventData) {
     const events = await this.getManyById(eventIds);
     events.forEach(async (event) => {
       if (
