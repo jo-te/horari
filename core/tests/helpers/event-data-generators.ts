@@ -20,15 +20,20 @@ export const generateEventBlueprint = (
   };
 };
 
-export const generateCreateEventData = (): CreateEventData => {
-  const startDate = faker.date.future();
-  const endDate = faker.date.future(undefined, startDate);
+export const generateCreateEventData = (
+  values?: Partial<CreateEventData>
+): CreateEventData => {
+  const startDate = values?.startDate || faker.date.future();
+  const endDate = values?.endDate || faker.date.future(undefined, startDate);
 
   return {
-    name: faker.name.findName(),
+    name: faker.lorem.word(),
     startDate: startDate,
     endDate: endDate,
-    isDisabled: faker.datatype.boolean(),
+    isDisabled:
+      values?.isDisabled !== undefined
+        ? values.isDisabled
+        : faker.datatype.boolean(),
   };
 };
 

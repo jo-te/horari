@@ -40,4 +40,27 @@ describe("event-service", () => {
     expect(event.resourceIds.length).toBe(1);
     expect(event.resourceIds[0]).toEqual(resource.id);
   });
+
+  it("doesn't allow to create an event which would overlap", async () => {
+    const eventData1 = generateCreateEventData({ isDisabled: false });
+    const eventData2 = generateCreateEventData({
+      startDate: eventData1.startDate,
+      isDisabled: false,
+    });
+    const resource = generateResource();
+
+    await horari.events.createFor(resource.id, eventData1);
+    await expect(
+      horari.events.createFor(resource.id, eventData2)
+    ).rejects.toThrowError();
+  });
+
+  it("does allow to get an event by id", async () => {
+    const eventData1 = generateCreateEventData();
+    const resource = generateResource();
+
+    const createdEvent = await horari.events.createFor(resource.id, eventData1);
+    const event = await horari.events.getById(createdEvent.id);
+    expect(event).toEqual(createdEvent);
+  });
 });
