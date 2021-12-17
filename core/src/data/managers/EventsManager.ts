@@ -27,10 +27,12 @@ export interface UpdateEventDTO {
 export interface EventFilter {
   idsIncluded?: EventId[];
   idsExcluded?: EventId[];
-  minStartDate?: Date;
-  maxStartDate?: Date;
-  minEndDate?: Date;
-  maxEndDate?: Date;
+  startEndDateXOR?: {
+    minStartDate?: Date;
+    maxStartDate?: Date;
+    minEndDate?: Date;
+    maxEndDate?: Date;
+  }[];
   minStartEndDelta?: number;
   maxStartEndDelta?: number;
   resourceIdsIncludedXOR?: Array<ResourceId | ResourceId[]>;

@@ -39,14 +39,13 @@ export default class EventService extends Service {
     scheduleIds,
   }: EventBlueprint): Promise<Event> {
     if (!isDisabled) {
-      if (
-        await this.areEventsExistingForManyBetween(
-          resourceIds,
-          startDate,
-          endDate,
-          scheduleIds
-        )
-      ) {
+      const wouldCollide = await this.areEventsExistingForManyBetween(
+        resourceIds,
+        startDate,
+        endDate,
+        scheduleIds
+      );
+      if (wouldCollide) {
         throw new Error(
           `Event "${name}" could no be created due to at least one conflicting event.`
         );
@@ -116,8 +115,16 @@ export default class EventService extends Service {
     return this.eventsManager.findAll(
       {
         resourceIdsIncludedXOR: resourceIds,
-        minStartDate: startDate,
-        maxEndDate: endDate,
+        startEndDateXOR: [
+          {
+            minStartDate: startDate,
+            maxStartDate: endDate,
+          },
+          {
+            minEndDate: startDate,
+            maxEndDate: endDate,
+          },
+        ],
       },
       options
     );
@@ -199,8 +206,16 @@ export default class EventService extends Service {
     const events = await this.eventsManager.findAll(
       {
         idsExcluded: options?.exludeIds,
-        minStartDate: startDate,
-        maxEndDate: endDate,
+        startEndDateXOR: [
+          {
+            minStartDate: startDate,
+            maxStartDate: endDate,
+          },
+          {
+            minEndDate: startDate,
+            maxEndDate: endDate,
+          },
+        ],
         resourceIdsIncludedXOR: resourceIds,
         scheduleIdsIncludedXOR: scheduleIds,
         isDisabled: false,
